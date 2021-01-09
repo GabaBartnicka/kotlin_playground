@@ -1,35 +1,24 @@
-fun isValidIdentifier0(s: String): Boolean {
-    print(s)
-
-    val firstChar = if (s.isBlank()) ' ' else s[0]
-
-    val isFirstCharValid = when (firstChar) {
-        in 'a'..'z' -> true
-        in 'A'..'Z' -> true
-        '_' -> true
-        else -> false
+fun sum0(list: List<Int>): Int {
+    var result = 0
+    for (i in list) {
+        result += i
     }
-    val other = Regex("[a-zA-Z0-9\\s_]+").matches(s)
-
-    return isFirstCharValid && other
+    return result
 }
 
-fun isValidIdentifier(s: String): Boolean {
-    fun isValidChar(ch: Char) = ch == '_' || ch.isLetterOrDigit()
-    if (s.isEmpty() || s[0].isDigit()) return false
-    for (ch in s) {
-        if (!isValidChar(ch)) return false
+fun <Int> List<Int>.sum(): kotlin.Int {
+    var s = 0
+    for (int in this) {
+        if (int is kotlin.Int)
+            s += int
     }
-
-    return true
+    return s
 }
-
 
 fun main(args: Array<String>) {
-    println(isValidIdentifier("name"))   // true
-    println(isValidIdentifier("_name"))  // true
-    println(isValidIdentifier("_12"))    // true
-    println(isValidIdentifier(""))       // false
-    println(isValidIdentifier("012"))    // false
-    println(isValidIdentifier("no$"))    // false
+//    val sum = sum(listOf(1, 2, 3))
+//    println(sum)    // 6
+
+    val sum = listOf(1, 2, 3).sum()
+    println(sum)
 }
